@@ -13,8 +13,22 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "./src",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/slices/*": ["slices/*"],
+      "@/helpers/*": ["helpers/*"],
+      "@/assets/*": ["assets/*"],
+      "@/pages/*": ["pages/*"],
+      "@/hooks": ["hooks/index.ts"],
+      "@/utils": ["utils/index.ts"],
+      "@/types": ["types/index.ts"],
+    }
   },
-  "include": ["./src"]
+  "include": ["./src"]  
 }
