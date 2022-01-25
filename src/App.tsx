@@ -10,7 +10,9 @@ import { themeFactory } from '@/helpers/theme';
 import { ThemeMode } from '@/types';
 import { useAppSelector } from '@/hooks';
 import Toolbar from '@mui/material/Toolbar';
-import Test from './pages/Test';
+import Test from '@/pages/Test';
+import {generators, converters} from '@/pages/index'
+import ErrorPage from './pages/404';
 
 const App: React.FC = () => {
 
@@ -39,7 +41,24 @@ const App: React.FC = () => {
             <Toolbar/>
               <Routes>
                 <Route path='/' element={<Home/>}/>
+
+                <Route path='/generators'>
+                  {generators()}
+                </Route>
+
+                <Route path='/converters'>
+                  {converters()}
+                </Route>
+
                 <Route path='/test' element={<Test/>}/>
+
+                <Route
+                  path="*" 
+                  element={
+                    <ErrorPage/>
+                  }
+                />
+              {/* </Route> */}
               </Routes>
 
           </Box>
