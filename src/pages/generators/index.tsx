@@ -1,17 +1,28 @@
-import { Route } from "react-router-dom";
-import FileHashGenerator from "./FileHashGenerator";
+import * as React from "react";
+import ShowHeaderProgressBar from '@/loaders/HeaderProgressBar/ShowHeaderProgressBar';
+import { Route, Routes } from "react-router-dom";
 
-const Generators = () => {
+const FileHashGenerator = React.lazy(() => import("./FileHashGenerator"));
+
+const Index = () => {
   return (
     <>
     Generators
     </>
   )
+}
+
+const Generators = () => {
+  return (
+    <Routes>
+      <Route index element={<Index/>}/>,
+      <Route path='file-hash-generator/*' element={
+        <React.Suspense fallback={<ShowHeaderProgressBar/>}>
+          <FileHashGenerator />
+        </React.Suspense>
+      }/>
+    </Routes>
+  )
 };
 
-export const generators = () => (
-    <>
-    <Route index element={<Generators/>}/>,
-    <Route path='file-hash-generator' element={<FileHashGenerator/>}/>,
-    </>
-)
+export default Generators

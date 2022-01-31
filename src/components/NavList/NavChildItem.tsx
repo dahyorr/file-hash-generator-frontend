@@ -15,7 +15,7 @@ const NavChildItem: React.FC<NavChildItemProps> = ({label, path, disabled, close
     selected={pathname === path ? true:false}
     onClick={closeSidebar}
     >
-      <Typography sx={{ml: '30px'}}>{label}</Typography>
+      <Typography color="text.secondary" variant="subtitle2" sx={{ml: '30px', fontWeight: 400}}>{label}</Typography>
     </ListItemButton>
   )
 }

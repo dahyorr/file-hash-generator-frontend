@@ -9,12 +9,13 @@ import { useTheme } from "@mui/material/styles";
 import ThemeToggle from '@/components/ThemeToggle'
 import { useAppDispatch } from '@/hooks';
 import {toggleSideBarNav} from '@/slices/triggersSlice'
+import HeaderProgressBar from "./loaders/HeaderProgressBar";
 
 
 const Header = () => {
     const dispatch = useAppDispatch()
     const theme = useTheme()
-    console.log(theme)
+    // console.log(theme)
     const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg') );
     const openSideBar = () => {
         dispatch(toggleSideBarNav())
@@ -41,7 +42,7 @@ const Header = () => {
             </IconButton>)}
 
             <Typography 
-                variant="h6" 
+                variant="h4" 
                 component="div" 
                 sx={{ 
                     flexGrow: 1,
@@ -53,6 +54,7 @@ const Header = () => {
             <ThemeToggle/>
             
         </Toolbar>
+        <HeaderProgressBar/>
         </AppBar>
     </Box>
     );

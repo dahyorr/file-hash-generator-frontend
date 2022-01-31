@@ -11,8 +11,17 @@ import { ThemeMode } from '@/types';
 import { useAppSelector } from '@/hooks';
 import Toolbar from '@mui/material/Toolbar';
 import Test from '@/pages/Test';
-import {generators, converters} from '@/pages/index'
 import ErrorPage from './pages/404';
+import MainSpinner from '@/loaders/MainSpinner';
+import { CssBaseline } from '@mui/material';
+import Container from '@mui/material/Container';
+import { styled } from '@mui/system';
+import Generators from '@/pages/generators'
+import Converters from '@/pages/converters'
+
+const Viewport = styled('main')({
+  flexGrow: 1, 
+})
 
 const App: React.FC = () => {
 
@@ -26,29 +35,20 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-      <Box sx={{
-        bgcolor: 'background.paper',
-        height: '100vh',
-        }}>
+      <CssBaseline/>
         <Header/>
 
         <Box sx={{display: 'flex', height: '100%'}}>
           <SideBarNav/>
-          <Box component="main" sx={{ 
-              flexGrow: 1, 
-              p: 1.5, 
-            }}> {/*ViewPort */}
-            <Toolbar/>
+          <Viewport>
+            <Container>
+              <Toolbar/>
               <Routes>
                 <Route path='/' element={<Home/>}/>
 
-                <Route path='/generators'>
-                  {generators()}
-                </Route>
+                <Route path='/generators/*' element={<Generators/>}/>
 
-                <Route path='/converters'>
-                  {converters()}
-                </Route>
+                <Route path='/converters/*' element={<Converters/>}/>
 
                 <Route path='/test' element={<Test/>}/>
 
@@ -60,10 +60,10 @@ const App: React.FC = () => {
                 />
               {/* </Route> */}
               </Routes>
-
-          </Box>
+            </Container>
+          </Viewport>
         </Box>
-      </Box>
+        <MainSpinner/>
       </BrowserRouter>
     </ThemeProvider>
   )

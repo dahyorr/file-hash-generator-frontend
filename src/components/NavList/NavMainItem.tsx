@@ -3,7 +3,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemButton from '@mui/material/ListItemButton';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Collapse from '@mui/material/Collapse';
@@ -47,9 +46,27 @@ const NavMainItem: React.FC<NavMainItemProps> = ({label, dropdown, icon, path, l
           selected={path && pathname.includes(path) || false}
           onClick={toggleDropdown}
         >
-          <ListItemIcon>{icon}</ListItemIcon>
-          <Typography sx={{lineHeight: 0}}>{label}</Typography>
-          <ListItemIcon>{open ? <KeyboardArrowDown/>: <KeyboardArrowRightIcon/>}</ListItemIcon>
+          <ListItemIcon
+            sx={{
+              mr: 2,
+              minWidth: 0,
+              '& .MuiSvgIcon-root': {
+                fontSize: 20,
+                color: 'text.secondary'
+              },
+            }}
+          >{icon}</ListItemIcon>
+          <Typography sx={{
+            lineHeight: 0,
+            fontWeight: 500,
+            fontSize: '0.875rem',
+            flexGrow: 1
+            }}>{label}</Typography>
+          <ListItemIcon
+            sx={{
+              minWidth: 0
+            }}
+          >{open ? <KeyboardArrowDown/>: <KeyboardArrowRightIcon/>}</ListItemIcon>
 
         </ListItemButton>
 
@@ -77,8 +94,27 @@ const NavMainItem: React.FC<NavMainItemProps> = ({label, dropdown, icon, path, l
           disableRipple
           selected={pathname === path ? true:false}
         >
-          <ListItemIcon>{icon}</ListItemIcon>
-          <Typography sx={{lineHeight: 0}}>{label}</Typography>
+          <ListItemIcon
+          sx={{
+            mr: 2,
+            minWidth: 0,
+            '& .MuiSvgIcon-root': {
+              fontSize: 20,
+              color: 'text.secondary'
+            },
+          }}
+          >
+            {icon}
+          </ListItemIcon>
+          <Typography 
+          sx={{
+            lineHeight: 0,
+            fontWeight: 500,
+            fontSize: '0.875rem'
+            }}
+          >
+            {label}
+          </Typography>
         </ListItemButton>
       )
       }

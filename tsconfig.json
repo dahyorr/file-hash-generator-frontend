@@ -25,6 +25,7 @@
       "@/helpers/*": ["helpers/*"],
       "@/assets/*": ["assets/*"],
       "@/pages/*": ["pages/*"],
+      "@/loaders/*": ["components/loaders/*"],
       "@/hooks": ["hooks/index.ts"],
       "@/utils": ["utils/index.ts"],
       "@/types": ["types/index.ts"],

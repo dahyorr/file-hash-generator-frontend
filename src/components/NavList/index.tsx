@@ -12,11 +12,8 @@ const StyledNavList = styled(List)<ListProps>(({theme}) => ({
     padding: 10,
     display: 'inline-flex',
     alignItems: 'center',
-    fontWeight: 500,
     borderRadius: 6,
-    color: theme.palette.secondary.main,
     width: '100%',
-    fontSize: '14px',
     justifyContent: 'flex-start',
     // minWidth: 'fit-content',
     textTransform: 'none',
@@ -34,25 +31,6 @@ const StyledNavList = styled(List)<ListProps>(({theme}) => ({
       }
     }
   },
-  '& .MuiListItemIcon-root': {
-    minWidth: 0,
-    // color: theme.palette.primary.main,
-    marginRight: 10,
-  },
-  '& .MuiSvgIcon-root': {
-    fontSize: 20,
-  },
-  '& .MuiTypography-root': {
-    display: 'flex',
-    fontFamily: 'Inter, sans-serif',
-    fontSize: 14,
-    fontWeight: 500,
-    flexGrow: 1,
-  },
-  '& .MuiIconButton-root': {
-    padding: 0,
-    mr: -1,
-  }
 }));
 
 const NavList: React.FC = () => {

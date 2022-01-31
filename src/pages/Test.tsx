@@ -1,9 +1,20 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Spinner from '@/loaders/Spinner';
+import { useHeaderProgress, useAppSelector, useMainSpinner } from '@/hooks';
+// import ShowHeaderProgressBar from '@/loaders/HeaderProgressBar/ShowHeaderProgressBar';
+// import ShowMainSpinner from '@/loaders/MainSpinner/ShowMainSpinner';
 
 
 const Test = () => {
+  const [showProgress, hideProgress] = useHeaderProgress()
+  const [showSpinner, hideSpinner] = useMainSpinner()
+  // showProgress()
+  // showSpinner()
   return <div>
+      {/* <ShowHeaderProgressBar/> */}
+      {/* <ShowMainSpinner/> */}
       <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
@@ -31,6 +42,9 @@ const Test = () => {
           eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
+        <Box sx={{width: '300px', height: '150px', bgcolor: 'red'}}>
+          <Spinner size={100}/>
+        </Box>
   </div>;
 };
 
