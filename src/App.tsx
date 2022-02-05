@@ -2,7 +2,6 @@ import React, {useEffect, useMemo} from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/system/Box'
-import localforage from 'localforage';
 import Header from '@/components/Header';
 import SideBarNav from '@/components/SideBarNav';
 import Home from '@/pages/Home';
@@ -29,7 +28,7 @@ const App: React.FC = () => {
   const theme = useMemo(() => createTheme(themeFactory(themeMode)), [themeMode])
   
   useEffect(() => { // store theme on change
-    localforage.setItem('themeMode', themeMode)
+    localStorage.setItem('themeMode', themeMode)
   }, [themeMode])
 
   return (

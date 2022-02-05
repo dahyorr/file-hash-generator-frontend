@@ -1,10 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit'
 import { detectTheme } from '@/utils'
-import localforage from 'localforage'
 
-const initialState  = {
-    mode: await localforage.getItem('themeMode') || detectTheme()
-}
+
+const initialState  = ({
+    mode: localStorage.getItem('themeMode') || detectTheme()
+})
 
 export const themeSlice = createSlice({
     name: 'theme',

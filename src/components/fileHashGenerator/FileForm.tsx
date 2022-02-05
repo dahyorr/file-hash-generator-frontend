@@ -31,7 +31,7 @@ const FileForm = () => {
     const [showSpinner, hideSpinner] = useMainSpinner()
     const navigate = useNavigate();
 
-    const showErrorSnackbar = (message) => {
+    const showErrorSnackbar = (message: string) => {
         setSnackBarError({
             message,
             open: true
@@ -94,9 +94,11 @@ const FileForm = () => {
                 hideSpinner()
             }
             catch(err){
-                console.log(err.message)
-                hideSpinner()
-                showErrorSnackbar(err.message || 'An error occured')
+                if (err instanceof Error) {
+                    console.log(err.message)
+                    hideSpinner()
+                    showErrorSnackbar(err.message || 'An error occured')
+                }
             }
         }
         return;
