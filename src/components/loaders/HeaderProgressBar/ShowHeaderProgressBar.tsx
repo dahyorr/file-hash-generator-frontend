@@ -12,7 +12,7 @@ const ShowHeaderProgressBar = () => {
     return () => {
       dispatch(hideHeaderProgressBar())
     }
-  }, [])
+  }, [dispatch])
 
   return null;
 };

@@ -26,9 +26,11 @@
       "@/assets/*": ["assets/*"],
       "@/pages/*": ["pages/*"],
       "@/loaders/*": ["components/loaders/*"],
+      "@/context/*": ["context/*"],
       "@/hooks": ["hooks/index.ts"],
       "@/utils": ["utils/index.ts"],
       "@/types": ["types/index.ts"],
+      "@/api": ["api/index.ts"],
     }
   },
   "include": ["./src"]  

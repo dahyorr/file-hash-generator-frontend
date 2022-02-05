@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import {styled} from '@mui/system'
 import Paper from '@mui/material/Paper'
@@ -7,30 +7,83 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
-import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
+import Alert from '@mui/material/Alert';
 import Spinner from '../loaders/Spinner';
+import { getHashingResult } from 'api/fileHash';
+import { useMainSpinner } from 'hooks/useMainSpinner';
+import { HashData } from '@/types';
+import { useSocket } from 'hooks/useSocket';
 
 const Preview = styled(Paper)({
     width: '100%',
     minHeight:"400px", 
 })
 
-const hashTypes = [
-  {type: 'SHA256'},
-  {type: 'MD5'},
-]
-
 const HashPreview = () => {
   const {fileId} = useParams()
-  const [data, setData] = useState({})
+  const [data, setData] = useState<HashData[]>([])
+  const [loading, setLoading] = useState(true)
+  const [showSpinner, hideSpinner] = useMainSpinner()
+  const {socket, openSocket, closeSocket} = useSocket("/file-hash")
   
+  const getResult = useCallback(async () => {
+    if(fileId){
+      try{
+        showSpinner()
+        const {data} = await getHashingResult(fileId)
+        setData(data)
+      }
+      catch(err){
+        console.log(err)
+        // show message in snackbar
+      }
+      finally{
+        setLoading(false)
+        hideSpinner()
+      }
+    }
+  }, [fileId, showSpinner, hideSpinner])
+
   useEffect(() => {
-    // fetch info about file id,
+    getResult() 
+  }, [getResult])
 
-  }, [])
+  useEffect(() => {
+    if(data.length > 0 ){
+      openSocket()
 
-  return(
+      socket.on('hash-completed', (body: HashData) => {
+        console.log('received', body)
+        setData(prev => {
+          const dataIndex = prev.findIndex(item => item.hashType === body.hashType)
+          if(dataIndex > -1){
+            prev[dataIndex] = body
+          }
+          return [...prev]
+        })
+      })
+
+      data.forEach((hash) => {
+        if(hash.status === 'Pending'){
+          socket.emit('hash-ready', {
+            fileId,
+            hashType: hash.hashType
+          })
+        }
+      })
+
+      if(
+        (data
+        .map(item => item.status)
+        .filter(status => status === 'Pending')
+        .length < 1)
+      ){
+        closeSocket()
+      }
+    }
+  }, [data, fileId, socket, closeSocket, openSocket])
+
+  if(!loading && data.length > 0) {return (
       <Preview elevation={12}>
         <Table>
           <TableHead>
@@ -40,15 +93,21 @@ const HashPreview = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-          {hashTypes.map((row) => (
+          {data.map((row) => (
             <TableRow
-              key={row.type}
+              key={row.hashType}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row" sx={{width: '150px'}}>
-                {row.type}
+                {row.hashType}
               </TableCell>
-              <TableCell align="left">dc</TableCell>
+              <TableCell align="left">
+                {
+                  row.status === "Pending"
+                  ? <Spinner size={25}/>
+                  : row.hash
+                }
+                </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -56,7 +115,17 @@ const HashPreview = () => {
 
         {/* <Spinner size={80}/> */}
       </Preview>
-    )  
+    )}
+  else if (loading){
+    return null
+  }
+  else{
+    return (
+      <Alert variant="filled" severity="error">
+        Invalid File ID
+      </Alert>
+    )
+  }
 };
 
 export default HashPreview;

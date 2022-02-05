@@ -1,4 +1,4 @@
-import { NavMainItemProps, NavChildItemProps } from '@/types';
+import { NavMainItemProps } from '@/types';
 import People from '@mui/icons-material/People';
 import Public from '@mui/icons-material/Public';
 import Home from '@mui/icons-material/Home';

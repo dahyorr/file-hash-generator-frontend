@@ -25,7 +25,7 @@ const Header = () => {
     <Box sx={{ flexGrow: 1 }}>
         <AppBar 
         position="fixed" 
-        color='secondary'
+        color="secondary"
         sx={{ 
             zIndex: (theme) => theme.zIndex.drawer + 1,
             backgroundImage: 'unset'

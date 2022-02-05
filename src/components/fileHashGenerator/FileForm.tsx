@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Stack from '@mui/material/Stack';
 import Fab from '@mui/material/Fab';
 import ArrowForwardIcon  from '@mui/icons-material/Code';
@@ -12,19 +13,50 @@ import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import { uploadFile, initiateHashing } from "@/api";
+import { useMainSpinner } from "@/hooks";
+import { HashType, HashRequest } from '@/types';
 
-const hashTypes = ['SHA256', 'MD5']
+const hashTypes: HashType[] = ['sha256', 'md5']
 
 const FileForm = () => {
     const [files, setFiles] = useState<File[]>([])
     const [errors, setErrors] = useState<{[key: string]: string}>({})
+    const [selectedHashType, setSelectedHashType] = useState<HashType[]>([])
+    const [snackBarError, setSnackBarError] = useState({
+        message: "",
+        open: false
+    })
 
-    const [selectedHashType, setSelectedHashType] = useState<string[]>([])
-    console.log(selectedHashType)
+    const [showSpinner, hideSpinner] = useMainSpinner()
+    const navigate = useNavigate();
+
+    const showErrorSnackbar = (message) => {
+        setSnackBarError({
+            message,
+            open: true
+        })
+    }
+
+    const closeErrorSnackbar = () => {
+        setSnackBarError({
+            message: '',
+            open: false
+        })
+    }
+
+    useEffect(() => {
+        if(errors.files){
+            showErrorSnackbar(errors.files)
+        }
+    }, [errors])
+    
     const handleHashChange = (event: SelectChangeEvent<typeof selectedHashType>) => {
         const {value} = event.target
         setSelectedHashType(
-            typeof value === 'string' ? value.split(',') : value,
+            typeof value === 'string' 
+            ? value.split(',') as HashType[]
+            : value,
         );
     };
 
@@ -50,20 +82,25 @@ const FileForm = () => {
 
     const onSubmit = async () => {
         if(validate()){
-            // upload file, get uuid and send request
-            const hashRequest = {
-                fileID: "",
-                hashTypes: selectedHashType
+            showSpinner()
+            try{
+                const {data} = await uploadFile(files[0])
+                const hashRequest: HashRequest = {
+                    fileId: data.fileId,
+                    hashTypes: selectedHashType
+                }
+                await initiateHashing(hashRequest)
+                navigate(`./${data.fileId}`);
+                hideSpinner()
             }
-            console.log(hashRequest)
-            // redirect on success
+            catch(err){
+                console.log(err.message)
+                hideSpinner()
+                showErrorSnackbar(err.message || 'An error occured')
+            }
         }
         return;
     }
-    
-    const clearFileErrorSnackbar = () => {
-        setErrors(prev => ({...prev, files:""}))
-    } 
 
     return (
         <Stack 
@@ -95,12 +132,15 @@ const FileForm = () => {
                 multiple
                 name="hashType"
             >
-                {hashTypes.map(type => (
-                    <MenuItem key={type} value={type}>
-                        <Checkbox checked={selectedHashType.indexOf(type) > -1} />
-                        <ListItemText primary={type} />
-                    </MenuItem>
-                ))}
+                {hashTypes.map(item => {
+                    const label = item.toUpperCase()
+                    return (
+                        <MenuItem key={item} value={item}>
+                            <Checkbox checked={selectedHashType.indexOf(item) > -1} />
+                            <ListItemText primary={label} />
+                        </MenuItem>
+                    )
+                })}
             </Select>
             {errors.hashType && <FormHelperText>{errors.hashType}</FormHelperText>}
             </FormControl>
@@ -111,18 +151,18 @@ const FileForm = () => {
         </Stack>
             
             <Snackbar 
-                open={Boolean(errors.files)} 
+                open={snackBarError.open} 
                 autoHideDuration={6000} 
-                onClose={clearFileErrorSnackbar}
+                onClose={closeErrorSnackbar}
             >
                 <Alert 
-                    onClose={clearFileErrorSnackbar} 
+                    onClose={closeErrorSnackbar} 
                     severity="error" 
                     sx={{ width: '100%' }}
                     elevation={6}
                     variant="filled"
                 >
-                    {errors.files}
+                    {snackBarError.message}
                 </Alert>
             </Snackbar>
         </Stack> 

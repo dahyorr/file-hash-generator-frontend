@@ -1,4 +1,4 @@
-import {useEffect} from 'react'
+import {useCallback, useEffect} from 'react'
 import Drawer from '@mui/material/Drawer';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -17,19 +17,19 @@ const SideBarNav = () => {
     const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg') );
     const sideBarNavOpen = useAppSelector((state) => state.triggers.sideBarNav.open)
 
-    const closeSideBar = () =>{
+    const closeSideBar = useCallback(() =>{
         dispatch(closeSideBarNav())
-    }
+    }, [dispatch])
 
-    const openSideBar = () =>{
+    const openSideBar = useCallback(() =>{
         dispatch(openSideBarNav())
-    }
+    }, [dispatch])
 
     useEffect(()=> {
         if(isLargeScreen){
             closeSideBar()
         }
-    }, [isLargeScreen])
+    }, [isLargeScreen, closeSideBar])
     
     if(isLargeScreen){
         return(
@@ -38,7 +38,10 @@ const SideBarNav = () => {
             sx={{
                 width: drawerWidth,
                 flexShrink: 0,
-                [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+                [`& .MuiDrawer-paper`]: { 
+                    width: drawerWidth, 
+                    boxSizing: 'border-box' 
+                },
             }}
         >
             <Toolbar />

@@ -1,7 +1,7 @@
 
 import ListItemButton from '@mui/material/ListItemButton';
 import Typography from '@mui/material/Typography';
-import {Link, matchPath, matchRoutes, useLocation} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
 import {NavChildItemProps } from '@/types';
 
 const NavChildItem: React.FC<NavChildItemProps> = ({label, path, disabled, closeSidebar}) => {

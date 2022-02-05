@@ -1,6 +1,5 @@
 import { ThemeMode } from "@/types";
 import { ThemeOptions } from "@mui/material";
-import { fontFamily } from "@mui/system";
 
 const darkPaletteOverrides = {
   primary:{

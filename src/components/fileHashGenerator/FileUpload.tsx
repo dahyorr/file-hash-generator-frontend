@@ -1,6 +1,6 @@
 import {useCallback} from 'react'
 import {styled} from '@mui/system'
-import { Box, Paper, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import ErrorIcon from '@mui/icons-material/Error';
 import UploadFileTwoToneIcon from '@mui/icons-material/UploadFileTwoTone';
@@ -37,9 +37,9 @@ const FileUpload: React.FC<{
 
     const onDropAccepted = useCallback((acceptedFiles: File[]) => {
         onChange(acceptedFiles)
-    }, [])
+    }, [onChange])
 
-    const {getRootProps, getInputProps, isDragActive, open, isDragReject, fileRejections} = useDropzone({
+    const {getRootProps, getInputProps, isDragActive, open, fileRejections} = useDropzone({
         onDropAccepted,
         maxFiles: 1,
         maxSize: sizeLimit,
@@ -117,7 +117,9 @@ const FileUpload: React.FC<{
         sx={{
             cursor: disableDropzone || selectedFiles.length > 0
                 ? 'default'
-                : 'pointer'
+                : 'pointer',
+                backgroundImage: 'none',
+                bgColor: 'red'
             }}    
     >
         <input {...getInputProps()} />

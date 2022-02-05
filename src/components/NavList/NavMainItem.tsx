@@ -21,7 +21,7 @@ const NavMainItem: React.FC<NavMainItemProps> = ({label, dropdown, icon, path, l
     if(dropdown && path && pathname.includes(path)){
       dispatch(openNavDropdown(label))
     }
-  },[])
+  },[dispatch, dropdown, label, path, pathname])
 
   const closeSidebar = () => {
     dispatch(closeSideBarNav())
