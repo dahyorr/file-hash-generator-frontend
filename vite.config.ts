@@ -5,5 +5,20 @@ import eslintPlugin from 'vite-plugin-eslint';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), tsconfigPaths(), eslintPlugin()]
+  server: {
+    proxy: {
+      '/api':{
+        target: "http://backend:5000",   // TODO: change to environment variable
+      },
+      '/socket.io':{
+        target: "http://backend:5000",   // TODO: change to environment variable
+        ws: true
+      }, 
+    }
+  },
+  plugins: [
+    react(), 
+    tsconfigPaths(), 
+    eslintPlugin(),
+  ]
 })
