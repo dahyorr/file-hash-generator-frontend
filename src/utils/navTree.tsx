@@ -39,7 +39,7 @@ export const navTree: NavMainItemProps[] = [
     dropdown: true,
     icon: <Public />,
     path: '/converters',
-    disabled: true,
+    disabled: false,
     links: [
     {
         label: 'JSON - YAML',

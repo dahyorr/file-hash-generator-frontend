@@ -20,6 +20,9 @@ import Converters from '@/pages/converters'
 
 const Viewport = styled('main')({
   flexGrow: 1, 
+  // height: '100%',
+  display: 'flex',
+  flexDirection: 'column'
 })
 
 const App: React.FC = () => {
@@ -35,33 +38,41 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
       <CssBaseline/>
+
         <Header/>
 
-        <Box sx={{display: 'flex', height: '100%'}}>
+        <Box sx={{display: 'flex'}}>
           <SideBarNav/>
-          <Viewport>
-            <Container>
+          <Viewport sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100vh'
+          }}>
+            {/* <Container> */}
               <Toolbar/>
-              <Routes>
-                <Route path='/' element={<Home/>}/>
+              <Box sx={{flexGrow: 1}}>
+                <Routes>
+                  <Route path='/' element={<Container><Home/></Container>}/>
 
-                <Route path='/generators/*' element={<Generators/>}/>
+                  <Route path='/generators/*' element={<Container><Generators/></Container>}/>
 
-                <Route path='/converters/*' element={<Converters/>}/>
+                  <Route path='/converters/*' element={<Converters/>}/>
 
-                <Route path='/test' element={<Test/>}/>
+                  <Route path='/test' element={<Test/>}/>
 
-                <Route
-                  path="*" 
-                  element={
-                    <ErrorPage/>
-                  }
-                />
-              {/* </Route> */}
-              </Routes>
-            </Container>
+                  <Route
+                    path="*" 
+                    element={
+                      <ErrorPage/>
+                    }
+                  />
+                {/* </Route> */}
+                </Routes>
+              </Box>
+            {/* </Container> */}
           </Viewport>
         </Box>
+        
         <MainSpinner/>
       </BrowserRouter>
     </ThemeProvider>
