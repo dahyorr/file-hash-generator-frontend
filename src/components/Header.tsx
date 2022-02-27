@@ -56,6 +56,7 @@ const Header = () => {
         </Toolbar>
         <HeaderProgressBar/>
         </AppBar>
+        {/* <Toolbar/> */}
     </Box>
     );
 };

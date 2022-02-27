@@ -1,8 +1,8 @@
 import { NavMainItemProps } from '@/types';
-import People from '@mui/icons-material/People';
-import Public from '@mui/icons-material/Public';
 import Home from '@mui/icons-material/Home';
-
+import {SiConvertio} from 'react-icons/si';
+import {GiPowerGenerator} from 'react-icons/gi';
+import { SvgIcon } from '@mui/material';
 
 export const navTree: NavMainItemProps[] = [
 {
@@ -14,7 +14,7 @@ export const navTree: NavMainItemProps[] = [
 {
     label: 'Generators',
     dropdown: true,
-    icon: <People />,
+    icon: <SvgIcon><GiPowerGenerator  /></SvgIcon>,
     path: '/generators',
     links: [
     {
@@ -37,9 +37,9 @@ export const navTree: NavMainItemProps[] = [
 {
     label: 'Converters',
     dropdown: true,
-    icon: <Public />,
+    icon: <SvgIcon><SiConvertio/></SvgIcon>,
     path: '/converters',
-    disabled: true,
+    disabled: false,
     links: [
     {
         label: 'JSON - YAML',

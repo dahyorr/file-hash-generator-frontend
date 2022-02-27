@@ -10,7 +10,7 @@ import { ThemeMode } from '@/types';
 import { useAppSelector } from '@/hooks';
 import Toolbar from '@mui/material/Toolbar';
 import Test from '@/pages/Test';
-import ErrorPage from './pages/404';
+import PageNotFound from './pages/ErrorPages/404';
 import MainSpinner from '@/loaders/MainSpinner';
 import { CssBaseline } from '@mui/material';
 import Container from '@mui/material/Container';
@@ -20,6 +20,9 @@ import Converters from '@/pages/converters'
 
 const Viewport = styled('main')({
   flexGrow: 1, 
+  // height: '100%',
+  display: 'flex',
+  flexDirection: 'column'
 })
 
 const App: React.FC = () => {
@@ -35,33 +38,34 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
       <CssBaseline/>
+
         <Header/>
 
-        <Box sx={{display: 'flex', height: '100%'}}>
+        <Box sx={{display: 'flex'}}>
           <SideBarNav/>
-          <Viewport>
-            <Container>
+          <Viewport sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100vh'
+          }}>
               <Toolbar/>
-              <Routes>
-                <Route path='/' element={<Home/>}/>
+              <Box sx={{flexGrow: 1}}>
+                <Routes>
+                  <Route path='/' element={<Container sx={{height:"100%"}}><Home/></Container>}/>
 
-                <Route path='/generators/*' element={<Generators/>}/>
+                  <Route path='/generators/*' element={<Container><Generators/></Container>}/>
 
-                <Route path='/converters/*' element={<Converters/>}/>
+                  <Route path='/converters/*' element={<Converters/>}/>
 
-                <Route path='/test' element={<Test/>}/>
+                  <Route path='/test' element={<Test/>}/>
 
-                <Route
-                  path="*" 
-                  element={
-                    <ErrorPage/>
-                  }
-                />
-              {/* </Route> */}
-              </Routes>
-            </Container>
+                  <Route path="*" element={<PageNotFound/>}/>
+                {/* </Route> */}
+                </Routes>
+              </Box>
           </Viewport>
         </Box>
+        
         <MainSpinner/>
       </BrowserRouter>
     </ThemeProvider>
