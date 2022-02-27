@@ -10,7 +10,7 @@ import { ThemeMode } from '@/types';
 import { useAppSelector } from '@/hooks';
 import Toolbar from '@mui/material/Toolbar';
 import Test from '@/pages/Test';
-import ErrorPage from './pages/404';
+import PageNotFound from './pages/ErrorPages/404';
 import MainSpinner from '@/loaders/MainSpinner';
 import { CssBaseline } from '@mui/material';
 import Container from '@mui/material/Container';
@@ -48,11 +48,10 @@ const App: React.FC = () => {
             flexDirection: 'column',
             height: '100vh'
           }}>
-            {/* <Container> */}
               <Toolbar/>
               <Box sx={{flexGrow: 1}}>
                 <Routes>
-                  <Route path='/' element={<Container><Home/></Container>}/>
+                  <Route path='/' element={<Container sx={{height:"100%"}}><Home/></Container>}/>
 
                   <Route path='/generators/*' element={<Container><Generators/></Container>}/>
 
@@ -60,16 +59,10 @@ const App: React.FC = () => {
 
                   <Route path='/test' element={<Test/>}/>
 
-                  <Route
-                    path="*" 
-                    element={
-                      <ErrorPage/>
-                    }
-                  />
+                  <Route path="*" element={<PageNotFound/>}/>
                 {/* </Route> */}
                 </Routes>
               </Box>
-            {/* </Container> */}
           </Viewport>
         </Box>
         

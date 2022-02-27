@@ -45,6 +45,7 @@ const NavMainItem: React.FC<NavMainItemProps> = ({label, dropdown, icon, path, l
           disableRipple
           selected={path && pathname.includes(path) || false}
           onClick={toggleDropdown}
+
         >
           <ListItemIcon
             sx={{

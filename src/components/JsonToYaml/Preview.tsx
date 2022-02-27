@@ -1,5 +1,6 @@
 import { Box } from '@mui/system'
 import MonacoEditor, {OnMount} from '@monaco-editor/react'
+import Spinner from "@/components/loaders/Spinner";
 
 interface PreviewProps {
   value?: string;
@@ -25,6 +26,7 @@ const Preview: React.FC<PreviewProps> = ({onMount, theme}) => {
           readOnly: true,
           automaticLayout: true
         }}
+        loading={<Spinner message="Loading Preview"/>}
         theme={theme}
       />
   </Box>

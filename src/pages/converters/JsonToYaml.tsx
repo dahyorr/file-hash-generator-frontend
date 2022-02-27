@@ -3,7 +3,7 @@ import Editor from "@/components/JsonToYaml/Editor";
 import Preview from "@/components/JsonToYaml/Preview";
 import { Box} from '@mui/material';
 import {OnChange, OnMount, OnValidate, loader} from '@monaco-editor/react'
-import YAML from 'yaml'
+import yaml from 'js-yaml'
 import {editor} from 'monaco-editor'
 import {monacoConfig} from '@/helpers/monacoLoaderConfig'
 import { useTheme } from '@mui/material/styles';
@@ -24,12 +24,6 @@ const JsonToYaml = () => {
 
   const handleEditorValidation: OnValidate = (markers) => {
     const errors = markers.map(marker => marker.message)
-    console.log(errors)
-    if(errors.length < 1){
-      const value = editorRef.current?.getValue()
-      console.log(value)
-      setEditorContent(value || "")
-    }
     setEditorErrors(errors)
   }
   
@@ -37,12 +31,26 @@ const JsonToYaml = () => {
     previewRef.current = editor; 
   }
 
+  // console.log(editorErrors)
+
+  const handleEditorChange: OnChange = (value) => {
+    console.log('change')
+    setEditorContent(value || "") 
+  }
+
   useEffect(() => {
-    if(editorContent){
-      const converted = YAML.stringify(JSON.parse(editorContent))
-      previewRef.current?.getModel()?.setValue(converted)
+    if(editorContent && editorErrors.length < 1){
+      try{
+        const parsedJson = JSON.parse(editorContent)
+        const converted = yaml.dump(parsedJson)
+        previewRef.current?.getModel()?.setValue(converted)
+      }
+      catch(err){
+        // console.log(err)
+        return;
+      }
     }
-  }, [editorContent])
+  }, [editorContent, editorErrors])
   
   return (
     <Box sx={{
@@ -58,6 +66,7 @@ const JsonToYaml = () => {
           value={editorContent} 
           onMount={handleEditorDidMount}
           theme={themeMode === 'light' ? themeMode :'vs-dark'}
+          onChange={handleEditorChange}
           onValidate={handleEditorValidation}
         />
         <Preview 
