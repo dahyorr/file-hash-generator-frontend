@@ -14,7 +14,7 @@ export const serviceApi =  axios.create({
 export const routes = {
     upload: '/upload',
     initiateHash: '/hash/initiate',
-    getHashResult: '/hash/result', // query param fileId
+    getHashResult: '/hash/result', // query parameter fileId
 }
 
 export const uploadFile = async (file: File) => {
