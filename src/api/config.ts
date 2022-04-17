@@ -1,7 +1,8 @@
 import axios from "axios";
 
+const HOST = import.meta.env.VITE_BASE_URL
 export const serviceApi =  axios.create({
-    baseURL: '/api',
+    baseURL: `${HOST}/api`,
     headers: {
         'Content-Type': 'application/json'
     }
@@ -10,7 +11,7 @@ export const serviceApi =  axios.create({
 export const routes = {
     upload: '/upload',
     initiateHash: '/hash/initiate',
-    getHashResult: '/hash/result', // query param fileId
+    getHashResult: '/hash/result', // query parameter fileId
 }
 
 export const uploadFile = async (file: File) => {
