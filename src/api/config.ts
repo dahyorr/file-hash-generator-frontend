@@ -1,8 +1,7 @@
 import axios from "axios";
 
-const HOST = import.meta.env.NODE_ENV === 'production' 
-    ? 'https://devutils-backend-production.up.railway.app'
-    : ''
+const HOST = import.meta.env.BASE_URL || '' 
+console.log(HOST)
 export const serviceApi =  axios.create({
     baseURL: `${HOST}/api`,
     headers: {
