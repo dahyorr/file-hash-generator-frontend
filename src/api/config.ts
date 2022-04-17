@@ -1,9 +1,8 @@
 import axios from "axios";
 
 const HOST = process.env.NODE_ENV === 'production' 
-    ? 'http://devutils.us-east-2.elasticbeanstalk.com'
+    ? 'https://devutils-backend-production.up.railway.app'
     : ''
-    
 export const serviceApi =  axios.create({
     baseURL: `${HOST}/api`,
     headers: {
