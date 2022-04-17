@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const HOST = import.meta.env.VITE_BASE_URL || '' 
-console.log('hh', HOST)
+const HOST = import.meta.env.VITE_BASE_URL
 export const serviceApi =  axios.create({
     baseURL: `${HOST}/api`,
     headers: {
