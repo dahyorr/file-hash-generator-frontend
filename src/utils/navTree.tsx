@@ -2,6 +2,7 @@ import { NavMainItemProps } from '@/types';
 import Home from '@mui/icons-material/Home';
 import {SiConvertio} from 'react-icons/si';
 import {GiPowerGenerator} from 'react-icons/gi';
+import {RiFolderKeyholeFill} from 'react-icons/ri';
 import { SvgIcon } from '@mui/material';
 
 export const navTree: NavMainItemProps[] = [
@@ -50,6 +51,20 @@ export const navTree: NavMainItemProps[] = [
         label: 'Number Base',
         path: '/converters/number-base',
         disabled: true
+    },
+    ]
+},
+{
+    label: 'Encoders/Decoders',
+    dropdown: true,
+    icon: <SvgIcon><RiFolderKeyholeFill/></SvgIcon>,
+    path: '/encode-decode',
+    disabled: false,
+    links: [
+    {
+        label: 'Base64 Encoder/Decoder',
+        path: '/encode-decode/base64',
+        disabled: false
     },
     ]
 },

@@ -119,7 +119,6 @@ const FileUpload: React.FC<{
                 ? 'default'
                 : 'pointer',
                 backgroundImage: 'none',
-                bgColor: 'red'
             }}    
     >
         <input {...getInputProps()} />

@@ -17,6 +17,8 @@ import Container from '@mui/material/Container';
 import { styled } from '@mui/system';
 import Generators from '@/pages/generators'
 import Converters from '@/pages/converters'
+import EncodersDecoders from './pages/EncodersDecoders';
+import { SnackbarProvider } from 'notistack';
 
 const Viewport = styled('main')({
   flexGrow: 1, 
@@ -38,9 +40,10 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
       <CssBaseline/>
+      <SnackbarProvider maxSnack={3}>
 
         <Header/>
-
+        
         <Box sx={{display: 'flex'}}>
           <SideBarNav/>
           <Viewport sx={{
@@ -54,6 +57,8 @@ const App: React.FC = () => {
                   <Route path='/' element={<Container sx={{height:"100%"}}><Home/></Container>}/>
 
                   <Route path='/generators/*' element={<Container><Generators/></Container>}/>
+                  
+                  <Route path='/encode-decode/*' element={<Container sx={{height: '100%'}}><EncodersDecoders/></Container>}/>
 
                   <Route path='/converters/*' element={<Converters/>}/>
 
@@ -67,6 +72,7 @@ const App: React.FC = () => {
         </Box>
         
         <MainSpinner/>
+        </SnackbarProvider>
       </BrowserRouter>
     </ThemeProvider>
   )
