@@ -17,7 +17,7 @@ import { uploadFile, initiateHashing } from "@/api";
 import { useMainSpinner } from "@/hooks";
 import { HashType, HashRequest } from '@/types';
 
-const hashTypes: HashType[] = ['sha256', 'md5']
+const hashTypes: HashType[] = ['md5', 'sha224', 'sha256', 'sha512'];
 
 const FileForm = () => {
     const [files, setFiles] = useState<File[]>([])
