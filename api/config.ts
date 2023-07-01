@@ -14,9 +14,12 @@ export const routes = {
     getHashResult: '/hash/result', // query parameter fileId
 }
 
-export const uploadFile = async (file: File) => {
+export const uploadFile = async (file: File, isTemp?: boolean) => {
     const formData = new FormData()
     formData.append('file', file)
+    if (isTemp) {
+        formData.append('isTemp', 'yes')
+    }
     const { data, status, statusText } = await serviceApi.post<{
         fileId: string;
         message: string;

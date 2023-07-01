@@ -84,7 +84,7 @@ const FileForm = () => {
         if (validate()) {
             showSpinner()
             try {
-                const { data } = await uploadFile(files[0])
+                const { data } = await uploadFile(files[0], true)
                 const hashRequest: HashRequest = {
                     fileId: data.fileId,
                     hashTypes: selectedHashType
