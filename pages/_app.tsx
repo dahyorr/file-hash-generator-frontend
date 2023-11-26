@@ -15,6 +15,7 @@ import pathConfig from '@/utils/pathConfig';
 import Head from 'next/head';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import createEmotionCache from 'helpers/createEmotionCache'
+import { Analytics } from '@vercel/analytics/react';
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -33,36 +34,39 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
   }
 
   return (
-    <CacheProvider value={emotionCache}>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <>
+      <CacheProvider value={emotionCache}>
+        <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <title>DevUtils</title>
-      </Head>
-      <StoreProvider store={store}>
-        <RootProvider>
-          <Header />
-          <Box sx={{ display: 'flex' }}>
-            <SideBarNav />
-            <Box sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              flexGrow: 1,
-              height: '100vh'
-            }}>
-              <Toolbar />
-              <Box sx={{ flexGrow: 1 }}>
+          <title>DevUtils</title>
+        </Head>
+        <StoreProvider store={store}>
+          <RootProvider>
+            <Header />
+            <Box sx={{ display: 'flex' }}>
+              <SideBarNav />
+              <Box sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                flexGrow: 1,
+                height: '100vh'
+              }}>
+                <Toolbar />
+                <Box sx={{ flexGrow: 1 }}>
 
-                <ContainerComponent maxWidth='xl' {...containerProps}>
-                  <Component {...pageProps} />
-                </ContainerComponent>
+                  <ContainerComponent maxWidth='xl' {...containerProps}>
+                    <Component {...pageProps} />
+                  </ContainerComponent>
+                </Box>
               </Box>
             </Box>
-          </Box>
 
-          <MainSpinner />
-        </RootProvider>
-      </StoreProvider>
-    </CacheProvider>
+            <MainSpinner />
+          </RootProvider>
+        </StoreProvider>
+      </CacheProvider>
+      <Analytics  />
+    </>
   )
 }
