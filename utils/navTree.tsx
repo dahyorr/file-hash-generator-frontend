@@ -26,7 +26,7 @@ export const navTree: NavMainItemProps[] = [
     {
         label: 'UUID Generator',
         path: '/generators/uuid-generator',
-        disabled: true
+        disabled: false
     },
     {
         label: 'Lorem Ipsum',

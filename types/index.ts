@@ -8,13 +8,13 @@ export interface NavChildItemProps {
 }
 
 export interface NavMainItemProps {
-label: string;
-dropdown: boolean;
-path?: string;
-icon: React.ReactNode;
-disabled?: boolean;
-links?: NavChildItemProps[];
-open?: boolean;
+    label: string;
+    dropdown: boolean;
+    path?: string;
+    icon: React.ReactNode;
+    disabled?: boolean;
+    links?: NavChildItemProps[];
+    open?: boolean;
 }
 
 export type HashType = 'sha256' | 'md5' | 'sha512' | 'sha224'
@@ -27,7 +27,9 @@ export interface HashData {
     status: StatusType;
 }
 
-export interface HashRequest{
+export interface HashRequest {
     fileId: string;
     hashTypes: HashType[];
 }
+
+export type UUIDVersion = 'v1' | 'v4'

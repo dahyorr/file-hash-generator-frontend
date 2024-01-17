@@ -16,6 +16,7 @@ import Head from 'next/head';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import createEmotionCache from 'helpers/createEmotionCache'
 import { Analytics } from '@vercel/analytics/react';
+import axios from 'axios';
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -66,7 +67,7 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
           </RootProvider>
         </StoreProvider>
       </CacheProvider>
-      <Analytics  />
+      <Analytics />
     </>
   )
 }
