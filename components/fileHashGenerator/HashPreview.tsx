@@ -12,7 +12,7 @@ import { getHashingResult } from 'api/fileHash';
 import { useMainSpinner } from 'hooks/useMainSpinner';
 import { HashData } from '@/types';
 import { useSocket } from 'hooks/useSocket';
-import { useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/router';
 
 const Preview = styled(Paper)({
   width: '100%',
@@ -20,8 +20,8 @@ const Preview = styled(Paper)({
 })
 
 const HashPreview = () => {
-  const searchParams = useSearchParams()
-  const fileId = searchParams.get('fileId')
+  const router = useRouter()
+  const fileId = router.query.fileId as string
   const [data, setData] = useState<HashData[]>([])
   const [loading, setLoading] = useState(true)
   const [showSpinner, hideSpinner] = useMainSpinner()
