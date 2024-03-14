@@ -1,9 +1,9 @@
 // import { Typography } from '@mui/material';
-import Box from '@mui/system/Box';
-import { PropsWithChildren } from 'react';
+import { BoxProps } from '@mui/material';
+import Box from '@mui/material/Box';
 
-const PageHeader: React.FC<PropsWithChildren> = ({ children }) => {
-  return <Box sx={{ py: 4, mb: 3 }}>
+const PageHeader: React.FC<BoxProps> = ({ children, sx, ...props }) => {
+  return <Box sx={{ py: 4, mb: 3, ...sx }} {...props} >
     {children}
   </Box>;
 };
