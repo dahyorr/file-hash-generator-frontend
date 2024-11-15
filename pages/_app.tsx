@@ -36,7 +36,6 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
 
   return (
     <>
-      <CacheProvider value={emotionCache}>
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -66,8 +65,6 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
             <MainSpinner />
           </RootProvider>
         </StoreProvider>
-      </CacheProvider>
-      <Analytics />
     </>
   )
 }
