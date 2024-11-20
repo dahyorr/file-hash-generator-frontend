@@ -1,12 +1,13 @@
+"use client"
 
 import ListItemButton from '@mui/material/ListItemButton';
 import Typography from '@mui/material/Typography';
 import NextLink from 'next/link'
-import { useRouter } from 'next/router'
 import { NavChildItemProps } from '@/types';
+import { usePathname } from 'next/navigation';
 
 const NavChildItem: React.FC<NavChildItemProps> = ({ label, path, disabled, closeSidebar }) => {
-  const { pathname } = useRouter()
+  const  pathname  = usePathname()
   if (disabled) return null
   return (
     <ListItemButton

@@ -1,6 +1,4 @@
-import { useAppDispatch, useAppSelector } from '@/hooks';
-import { toggleThemeMode } from '@/slices/themeSlice'
-import { styled } from '@mui/material/styles';
+import { styled, useColorScheme } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
 import sunIcon from '../assets/sun.png'
 import moonIcon from '../assets/moon.png'
@@ -53,17 +51,19 @@ const ThemeSwitch = styled(Switch)(({ theme }) => ({
 
 
 const ThemeToggle: React.FC = () => {
+    const {mode, setMode} = useColorScheme()
 
-    const dispatch = useAppDispatch()
-    const themeMode = useAppSelector((state) => state.theme.mode)
+    const toggleThemeMode = () => {
+        setMode(mode === 'dark' ? 'light' : 'dark')
+    }
 
     return (
         <div>
             <FormControlLabel
                 control={
                     <ThemeSwitch
-                        onChange={() => { dispatch(toggleThemeMode()) }}
-                        checked={themeMode === 'dark'}
+                        onChange={toggleThemeMode}
+                        checked={mode === 'dark'}
                         inputProps={{ 'aria-label': 'theme-switcher' }}
                     />
                 }

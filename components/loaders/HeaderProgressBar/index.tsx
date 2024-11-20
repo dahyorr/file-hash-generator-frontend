@@ -1,12 +1,12 @@
-import { useAppSelector } from '@/hooks';
+import { useUi } from '@/hooks';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 
 const ProgressBar = () => {
 
-  const displayProgressBar = useAppSelector(state => state.loaders.headerProgressBar)
-  
-  return displayProgressBar  
+  const {headerProgressVisible} = useUi()
+
+  return headerProgressVisible  
   ?(
     <Box sx={{ width: '100%'}}>
       <LinearProgress color="primary" />

@@ -1,17 +1,15 @@
-import {useAppDispatch} from 'hooks'
-import {displayHeaderProgressBar, hideHeaderProgressBar} from '@/slices/loadersSlice'
-import { useCallback } from 'react'
+import { useUi } from 'hooks'
 
 export const useHeaderProgress = () => {
-    const dispatch = useAppDispatch()
+    const { displayHeaderProgressBar, hideHeaderProgressBar } = useUi()
 
-    const showProgress = useCallback(() => {
-        dispatch(displayHeaderProgressBar())
-    }, [dispatch])
+    const showProgress = () => {
+        displayHeaderProgressBar()
+    }
 
-    const hideProgress = useCallback(() => {
-        dispatch(hideHeaderProgressBar())
-    }, [dispatch])
+    const hideProgress = () => {
+        hideHeaderProgressBar()
+    }
 
     return [showProgress, hideProgress]
 }

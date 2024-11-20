@@ -1,3 +1,4 @@
+"use client"
 import AppBar  from "@mui/material/AppBar";
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,19 +8,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from "@mui/material/styles";
 import ThemeToggle from '@/components/ThemeToggle'
-import { useAppDispatch } from '@/hooks';
-import {toggleSideBarNav} from '@/slices/triggersSlice'
 import HeaderProgressBar from "./loaders/HeaderProgressBar";
+import { useUi } from "@/hooks";
 
 
 const Header = () => {
-    const dispatch = useAppDispatch()
     const theme = useTheme()
-    // console.log(theme)
+    const {toggleSidebar} = useUi()
     const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg') );
-    const openSideBar = () => {
-        dispatch(toggleSideBarNav())
-    } 
+
 
     return (
     <Box sx={{ flexGrow: 1 }}>
@@ -36,7 +33,7 @@ const Header = () => {
                 edge="start"
                 color="inherit"
                 aria-label="menu"
-                onClick={openSideBar}
+                onClick={toggleSidebar}
             >
                 <MenuIcon />
             </IconButton>)}

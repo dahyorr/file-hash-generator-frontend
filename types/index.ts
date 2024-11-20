@@ -14,7 +14,6 @@ export interface NavMainItemProps {
     icon: React.ReactNode;
     disabled?: boolean;
     links?: NavChildItemProps[];
-    open?: boolean;
 }
 
 export type HashType = 'sha256' | 'md5' | 'sha512' | 'sha224'
