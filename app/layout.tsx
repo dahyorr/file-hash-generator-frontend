@@ -8,6 +8,7 @@ import { Box, Container, CssBaseline, Toolbar } from '@mui/material';
 import SideBarNav from '@/components/SideBarNav';
 import Header from '@/components/Header';
 import Providers from './providers';
+import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
 const inter = Inter({
   weight: ['300', '400', '500', '700'],
@@ -42,13 +43,15 @@ export default function RootLayout(props: any) {
   }
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.variable}>
+      <InitColorSchemeScript attribute="class" />
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme} defaultMode='dark'>
             <CssBaseline />
             <Providers>
               <Header />
+              <main>
               <Box sx={{ display: 'flex' }}>
                 <SideBarNav />
                 <Box sx={{
@@ -65,6 +68,7 @@ export default function RootLayout(props: any) {
                   </Box>
                 </Box>
               </Box>
+              </main>
             </Providers>
           </ThemeProvider>
         </AppRouterCacheProvider>

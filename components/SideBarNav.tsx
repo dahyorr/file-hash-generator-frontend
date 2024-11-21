@@ -16,11 +16,11 @@ const SideBarNav = () => {
     const theme = useTheme()
     const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
 
-    useEffect(() => {
-        if (isLargeScreen) {
-            closeSideBar()
-        }
-    }, [isLargeScreen, closeSideBar])
+    // useEffect(() => {
+    //     if (isLargeScreen) {
+    //         closeSideBar()
+    //     }
+    // }, [isLargeScreen, closeSideBar])
 
     if (isLargeScreen) {
         return (

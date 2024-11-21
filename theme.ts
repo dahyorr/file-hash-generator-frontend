@@ -3,7 +3,77 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   colorSchemes:{
-    dark: true
+    dark: {
+      palette: {
+        primary: {
+          main: '#7b80ff',
+        },
+        secondary: {
+          main: '#1E212A',
+        },
+        error: {
+          main: '#E6492D',
+        },
+        warning:{
+          main: '#F6AB2E',
+        },
+        success: {
+          main: '#38B249',
+        },
+        info: {
+          main: '#1664D8',
+        },
+        text: {
+          primary: '#E1E3EA',
+          secondary: '#506176'
+        },
+        background:{
+          default: '#111318',
+          paper: '#111318',
+        },
+      }
+    }
+  },
+  palette:{
+    secondary: {
+      main: "#1E212A",
+      dark: "#1E212A",
+    },
+    primary:{
+      light: '#5046e4',
+      dark: '#7b80ff',
+      main: '#7b80ff',
+    },
+    error:{
+      main: '#ec4c47',
+      light: '#E6492D',
+      dark: '#E6492D'
+    },
+    warning: {
+      light: '#d9822b',
+      main: '#F6AB2E',
+      dark: '#F6AB2E'
+    },
+    success:{
+      light: '#27ab6e',
+      main: '#38B249',
+      dark: '#38B249'
+    },
+    info: {
+      light: '#1070CA',
+      main: '#1664D8',
+      dark: '#1664D8'
+    },
+    text: {
+      primary: '#03060B',
+      secondary: '#506176'
+    },
+    // background:{
+    //   default: '#111318',
+    //   paper: '#111318',
+    // },
+    divider: '#E1E3EA',
+    
   },
   typography: {
     fontFamily: 'var(--font-inter)',

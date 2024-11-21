@@ -34,7 +34,6 @@ const JsonToYamlPage = () => {
   // console.log(editorErrors)
 
   const handleEditorChange: OnChange = (value) => {
-    console.log('change')
     setEditorContent(value || "")
   }
 

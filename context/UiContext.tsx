@@ -1,5 +1,5 @@
 "use client"
-import { createContext, PropsWithChildren, useState } from "react";
+import { createContext, PropsWithChildren, useCallback, useState } from "react";
 
 type UiContextType = {
   sidebarOpen: boolean
@@ -34,13 +34,13 @@ export const UiProvider = ({children}: PropsWithChildren) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [headerProgressVisible, setHeaderProgressVisible] = useState(false)
   
-  const showLoader = () => {
+  const showLoader = useCallback(() => {
     setLoading(true)
-  }
+  }, [])
 
-  const hideLoader = () => {
+  const hideLoader = useCallback(() => {
     setLoading(false)
-  }
+  }, [])
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen)
