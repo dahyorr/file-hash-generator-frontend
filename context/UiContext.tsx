@@ -54,13 +54,13 @@ export const UiProvider = ({children}: PropsWithChildren) => {
     setSidebarOpen(false)
   }
 
-  const displayHeaderProgressBar = () => {
+  const displayHeaderProgressBar = useCallback(() => {
     setHeaderProgressVisible(true)
-  }
+  }, [])
 
-  const hideHeaderProgressBar = () => {
+  const hideHeaderProgressBar = useCallback(() => {
     setHeaderProgressVisible(false)
-  } 
+  }, []) 
 
   const value = {
     loading,

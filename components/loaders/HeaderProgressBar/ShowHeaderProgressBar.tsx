@@ -1,18 +1,16 @@
 import {useEffect} from 'react';
-import { useAppDispatch } from '@/hooks';
-import { displayHeaderProgressBar, hideHeaderProgressBar } from '@/slices/loadersSlice';
-
+import { useUi } from 'hooks';
 // Shows HeaderProgressBar when rendered
 
 const ShowHeaderProgressBar = () => {
-  const dispatch = useAppDispatch()
+  const {displayHeaderProgressBar, hideHeaderProgressBar} = useUi()
 
   useEffect(() => {
-    dispatch(displayHeaderProgressBar())
+    displayHeaderProgressBar()
     return () => {
-      dispatch(hideHeaderProgressBar())
+      hideHeaderProgressBar()
     }
-  }, [dispatch])
+  }, [displayHeaderProgressBar, hideHeaderProgressBar])
 
   return null;
 };
