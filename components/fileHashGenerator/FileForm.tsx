@@ -1,5 +1,6 @@
+"use client"
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import Stack from '@mui/material/Stack';
 import Fab from '@mui/material/Fab';
 import ArrowForwardIcon from '@mui/icons-material/Code';
@@ -14,7 +15,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { uploadFile, initiateHashing } from "@/api";
-import { useMainSpinner } from "@/hooks";
+import { useLoader } from "@/hooks";
 import { HashType, HashRequest } from '@/types';
 
 const hashTypes: HashType[] = ['md5', 'sha224', 'sha256', 'sha512'];
@@ -29,7 +30,7 @@ const FileForm = () => {
         open: false
     })
 
-    const [showSpinner, hideSpinner] = useMainSpinner()
+    const {showLoader, hideLoader} = useLoader()
 
     const showErrorSnackbar = (message: string) => {
         setSnackBarError({
@@ -82,7 +83,7 @@ const FileForm = () => {
 
     const onSubmit = async () => {
         if (validate()) {
-            showSpinner()
+            showLoader()
             try {
                 const { data } = await uploadFile(files[0], true)
                 const hashRequest: HashRequest = {
@@ -91,12 +92,12 @@ const FileForm = () => {
                 }
                 await initiateHashing(hashRequest)
                 await router.push(`/generators/file-hash-generator/${data.fileId}`);
-                hideSpinner()
+                hideLoader()
             }
             catch (err) {
                 if (err instanceof Error) {
-                    console.log(err.message)
-                    hideSpinner()
+                    console.error(err.message)
+                    hideLoader()
                     showErrorSnackbar(err.message || 'An error occured')
                 }
             }

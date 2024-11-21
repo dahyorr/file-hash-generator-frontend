@@ -1,18 +1,17 @@
 import {useEffect} from 'react';
-import { useAppDispatch } from '@/hooks';
-import { displayMainSpinner, hideMainSpinner } from '@/slices/loadersSlice';
+import { useLoader } from '@/hooks';
 
 // Shows HeaderProgressBar when rendered
 
 const ShowMainSpinner = () => {
-  const dispatch = useAppDispatch()
+  const {showLoader, hideLoader} = useLoader()
 
   useEffect(() => {
-    dispatch(displayMainSpinner())
+    showLoader()
     return () => {
-      dispatch(hideMainSpinner())
+      hideLoader()
     }
-  }, [])
+  }, [showLoader, hideLoader])
 
   return null;
 };

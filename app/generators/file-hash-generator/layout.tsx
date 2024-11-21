@@ -1,19 +1,19 @@
 import PageHeader from 'components/PageHeader'
 import HashPreview from 'components/fileHashGenerator/HashPreview'
 import { Box, Typography } from '@mui/material'
-import React from 'react'
+import {PropsWithChildren} from 'react'
 
-const FileHashGeneratorResultPage = () => {
+const FileHashGeneratorLayout = ({children}: PropsWithChildren) => {
   return (
     <Box>
       <PageHeader>
         <Typography variant="h4" >File Hash Generator</Typography>
       </PageHeader>
 
-      <HashPreview />
+      {children}
 
     </Box>
   )
 }
 
-export default FileHashGeneratorResultPage
+export default FileHashGeneratorLayout

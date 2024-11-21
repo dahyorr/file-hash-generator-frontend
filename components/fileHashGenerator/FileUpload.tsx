@@ -50,7 +50,7 @@ const FileUpload: React.FC<{
 
     const fileErrorContent = () => {
         if (fileErrors.length > 0){
-        console.log(fileErrors[0].code)
+        console.error(fileErrors[0].code)
         const message = fileErrors[0].code === "file-too-large" 
             && `File size should be less than ${convertByteSize(sizeLimit)}`
             

@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+"use client"
+import { useState } from 'react'
 import PageHeader from 'components/PageHeader'
 import { Box, Button, OutlinedInput, MenuItem, Stack, InputAdornment, IconButton, Typography, Select, SelectChangeEvent } from '@mui/material'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';

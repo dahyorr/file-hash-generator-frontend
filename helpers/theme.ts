@@ -62,13 +62,6 @@ export const themeFactory = (mode: ThemeMode): ThemeOptions => ({
         ?lightPaletteOverrides
         :darkPaletteOverrides
       },
-      components: {
-        MuiListItemButton: {
-          defaultProps: {
-            disableTouchRipple: true,
-          },
-        },
-      },
       typography: {
         fontFamily: 'Roboto, Inter, Arial',
         h1: {

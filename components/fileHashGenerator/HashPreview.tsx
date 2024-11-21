@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState, useCallback } from 'react';
 import { styled } from '@mui/system'
 import Paper from '@mui/material/Paper'
@@ -9,10 +10,10 @@ import TableBody from '@mui/material/TableBody';
 import Alert from '@mui/material/Alert';
 import Spinner from '../loaders/Spinner';
 import { getHashingResult } from 'api/fileHash';
-import { useMainSpinner } from 'hooks/useMainSpinner';
+import { useLoader } from 'hooks';
 import { HashData } from '@/types';
 import { useSocket } from 'hooks/useSocket';
-import { useRouter } from 'next/router';
+import { useParams } from 'next/navigation';
 
 const Preview = styled(Paper)({
   width: '100%',
@@ -20,30 +21,29 @@ const Preview = styled(Paper)({
 })
 
 const HashPreview = () => {
-  const router = useRouter()
-  const fileId = router.query.fileId as string
+  const {fileId} = useParams() as {fileId: string}
   const [data, setData] = useState<HashData[]>([])
   const [loading, setLoading] = useState(true)
-  const [showSpinner, hideSpinner] = useMainSpinner()
+  const {hideLoader, showLoader} = useLoader()
   const { socket, openSocket, closeSocket } = useSocket("/file-hash")
 
   const getResult = useCallback(async () => {
     if (fileId) {
       try {
-        showSpinner()
+        showLoader()
         const { data } = await getHashingResult(fileId)
         setData(data)
       }
       catch (err) {
-        console.log(err)
+        console.error(err)
         // show message in snackbar
       }
       finally {
         setLoading(false)
-        hideSpinner()
+        hideLoader()
       }
     }
-  }, [fileId, showSpinner, hideSpinner])
+  }, [fileId, showLoader, hideLoader])
 
   useEffect(() => {
     getResult()
@@ -54,7 +54,7 @@ const HashPreview = () => {
       openSocket()
 
       socket.on('hash-completed', (body: HashData) => {
-        console.log('received', body)
+        console.error('received', body)
         setData(prev => {
           const dataIndex = prev.findIndex(item => item.type === body.type)
           if (dataIndex > -1) {

@@ -2,7 +2,6 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import List, {ListProps} from '@mui/material/List';
 import Paper from '@mui/material/Paper';
-import {useAppSelector} from '@/hooks'
 import {navTree} from 'utils'
 import NavMainItem from './NavMainItem';
 
@@ -33,8 +32,6 @@ const StyledNavList = styled(List)<ListProps>(({theme}) => ({
 }));
 
 const NavList: React.FC = () => {
-  const dropdownStates = useAppSelector(state => state.triggers.navDropdownsOpen)
-  
   return (
     <Box sx={{ display: 'flex'}}>
         <Paper elevation={0} sx={{ maxWidth: '100%',flexGrow: 1 }}>
@@ -42,7 +39,6 @@ const NavList: React.FC = () => {
           {navTree.map((item, index) => (
             <NavMainItem 
               key={index}
-              open={dropdownStates[item.label]}
               {...item}
             />
             ))}

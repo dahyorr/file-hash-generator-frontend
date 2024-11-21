@@ -1,3 +1,4 @@
+"use client"
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -7,29 +8,27 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Collapse from '@mui/material/Collapse';
 import NextLink from 'next/link'
-import { useRouter } from 'next/router'
-import { useAppDispatch } from '@/hooks'
-import { closeSideBarNav, toggleNavDropdown, openNavDropdown } from '@/slices/triggersSlice';
 import { NavMainItemProps } from '@/types';
 import NavChildItem from './NavChildItem';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
-const NavMainItem: React.FC<NavMainItemProps> = ({ label, dropdown, icon, path, links, disabled, open }) => {
-  const { pathname } = useRouter()
-  const dispatch = useAppDispatch()
+const NavMainItem: React.FC<NavMainItemProps> = ({ label, dropdown, icon, path, links, disabled }) => {
+  const pathname = usePathname()
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    if (dropdown && path && pathname.includes(path)) {
-      dispatch(openNavDropdown(label))
+    if (dropdown && path && pathname?.includes(path)) {
+      setOpen(true)
     }
-  }, [dispatch, dropdown, label, path, pathname])
+  }, [ dropdown, label, path, pathname])
 
   const closeSidebar = () => {
-    dispatch(closeSideBarNav())
+    setOpen(false)
   }
 
   const toggleDropdown = () => {
-    dispatch(toggleNavDropdown(label))
+    setOpen(!open)
   }
 
   if (disabled) return null
@@ -44,7 +43,7 @@ const NavMainItem: React.FC<NavMainItemProps> = ({ label, dropdown, icon, path, 
           <ListItemButton
             component='button'
             disableRipple
-            selected={path && pathname.includes(path) || false}
+            selected={path && pathname?.includes(path) || false}
             onClick={toggleDropdown}
 
           >
