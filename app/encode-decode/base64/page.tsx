@@ -1,3 +1,4 @@
+"use client";
 import {useState} from 'react'
 import {Box, Stack, TextField, Button} from '@mui/material';
 import { useSnackbar } from 'notistack';

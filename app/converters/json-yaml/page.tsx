@@ -1,3 +1,4 @@
+"use client"
 import { useState, useRef, useEffect } from 'react'
 import Editor from "@/components/JsonToYaml/Editor";
 import Preview from "@/components/JsonToYaml/Preview";

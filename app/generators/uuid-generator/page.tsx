@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from 'react'
 import PageHeader from 'components/PageHeader'
 import { Box, Button, OutlinedInput, MenuItem, Stack, InputAdornment, IconButton, Typography, Select, SelectChangeEvent } from '@mui/material'
