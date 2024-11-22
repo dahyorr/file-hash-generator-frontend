@@ -4,7 +4,7 @@ import theme from '../theme';
 import { Inter } from "next/font/google"
 import { Metadata, Viewport } from 'next';
 import { Analytics } from '@vercel/analytics/react';
-import { Box, Container, CssBaseline, Toolbar } from '@mui/material';
+import { Box, CssBaseline, NoSsr, Toolbar } from '@mui/material';
 import SideBarNav from '@/components/SideBarNav';
 import Header from '@/components/Header';
 import Providers from './providers';
@@ -31,43 +31,34 @@ export const viewport: Viewport = {
 }
 
 export default function RootLayout(props: any) {
-  // const pathname = usePathname()
-  // const pageConfig = pathConfig.find(p => p.path === pathname)
-  // console.log(pageConfig, pathname)
   const { children } = props;
-  const ContainerComponent = Container
-  const containerProps = {
-    sx: {
-      height: '100%'
-    }
-  }
 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.variable}>
-      <InitColorSchemeScript attribute="class" />
         <AppRouterCacheProvider>
-          <ThemeProvider theme={theme} defaultMode='dark'>
+          <ThemeProvider theme={theme} >
+            <InitColorSchemeScript attribute="class" />
             <CssBaseline />
             <Providers>
               <Header />
               <main>
-              <Box sx={{ display: 'flex' }}>
-                <SideBarNav />
-                <Box sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  flexGrow: 1,
-                  height: '100vh'
-                }}>
-                  <Toolbar />
-                  <Box sx={{ flexGrow: 1 }}>
-                    <ContainerComponent maxWidth='xl' {...containerProps}>
-                      {children}
-                    </ContainerComponent>
+                <Box sx={{ display: 'flex' }}>
+                  <NoSsr>
+                  <SideBarNav />
+                  </NoSsr>
+                  <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flexGrow: 1,
+                    minHeight: '100vh'
+                  }}>
+                    <Toolbar />
+                    <Box sx={{ flexGrow: 1 }}>
+                        {children}
+                    </Box>
                   </Box>
                 </Box>
-              </Box>
               </main>
             </Providers>
           </ThemeProvider>

@@ -1,3 +1,4 @@
+"use client"
 import { styled, useColorScheme } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
 import sunIcon from '../assets/sun.png'
@@ -21,12 +22,10 @@ const ThemeSwitch = styled(Switch)(({ theme }) => ({
             },
             '& + .MuiSwitch-track': {
                 opacity: 1,
-                backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
             },
         },
     },
     '& .MuiSwitch-thumb': {
-        // backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
         backgroundColor: 'transparent',
         width: 32,
         height: 32,
@@ -44,17 +43,17 @@ const ThemeSwitch = styled(Switch)(({ theme }) => ({
     },
     '& .MuiSwitch-track': {
         opacity: 1,
-        backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
         borderRadius: 20 / 2,
     },
 }));
 
 
 const ThemeToggle: React.FC = () => {
-    const {mode, setMode} = useColorScheme()
+    const {systemMode, mode,setMode} = useColorScheme()
+    const themeMode = systemMode || mode
 
     const toggleThemeMode = () => {
-        setMode(mode === 'dark' ? 'light' : 'dark')
+        setMode(themeMode === 'dark' ? 'light' : 'dark')
     }
 
     return (
@@ -63,7 +62,7 @@ const ThemeToggle: React.FC = () => {
                 control={
                     <ThemeSwitch
                         onChange={toggleThemeMode}
-                        checked={mode === 'dark'}
+                        checked={themeMode === 'dark'}
                         inputProps={{ 'aria-label': 'theme-switcher' }}
                     />
                 }

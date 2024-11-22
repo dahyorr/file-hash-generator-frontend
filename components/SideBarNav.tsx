@@ -4,7 +4,7 @@ import Drawer from '@mui/material/Drawer';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Toolbar from '@mui/material/Toolbar';
-import { useTheme } from "@mui/material/styles";
+
 import NavList from 'components/NavList'
 import { useUi } from '@/hooks';
 
@@ -13,8 +13,9 @@ const drawerWidth = 270;
 
 const SideBarNav = () => {
     const {sidebarOpen, openSideBar, closeSideBar} = useUi();
-    const theme = useTheme()
-    const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
+    // const isLargeScreen = useMediaQuery("(min-width:600px)");
+    const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up('lg'));
+    // const isLargeScreen = true
 
     // useEffect(() => {
     //     if (isLargeScreen) {

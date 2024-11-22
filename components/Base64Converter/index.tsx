@@ -3,7 +3,7 @@ import {useState} from 'react'
 import {Box, Stack, TextField, Button} from '@mui/material';
 import { useSnackbar } from 'notistack';
 
-const Base64EncodeDecodePage = () => {
+const Base64Converter = () => {
   const [inputValue, setInputValue] = useState('');
   const [outputValue, setOutputValue] = useState('');
   const {enqueueSnackbar} = useSnackbar();
@@ -89,4 +89,4 @@ const Base64EncodeDecodePage = () => {
   )
 };
 
-export default Base64EncodeDecodePage;
+export default Base64Converter;

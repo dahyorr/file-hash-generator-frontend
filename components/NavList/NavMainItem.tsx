@@ -21,7 +21,7 @@ const NavMainItem: React.FC<NavMainItemProps> = ({ label, dropdown, icon, path, 
     if (dropdown && path && pathname?.includes(path)) {
       setOpen(true)
     }
-  }, [ dropdown, label, path, pathname])
+  }, [dropdown, label, path, pathname])
 
   const closeSidebar = () => {
     setOpen(false)
@@ -117,8 +117,8 @@ const NavMainItem: React.FC<NavMainItemProps> = ({ label, dropdown, icon, path, 
               {label}
             </Typography>
           </ListItemButton>
-  )
-}
+        )
+      }
 
     </ListItem >
   )

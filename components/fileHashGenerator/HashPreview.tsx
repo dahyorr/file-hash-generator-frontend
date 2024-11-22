@@ -13,15 +13,13 @@ import { getHashingResult } from 'api/fileHash';
 import { useLoader } from 'hooks';
 import { HashData } from '@/types';
 import { useSocket } from 'hooks/useSocket';
-import { useParams } from 'next/navigation';
 
 const Preview = styled(Paper)({
   width: '100%',
   minHeight: "400px",
 })
 
-const HashPreview = () => {
-  const {fileId} = useParams() as {fileId: string}
+const HashPreview = ({fileId}: {fileId: string}) => {
   const [data, setData] = useState<HashData[]>([])
   const [loading, setLoading] = useState(true)
   const {hideLoader, showLoader} = useLoader()
