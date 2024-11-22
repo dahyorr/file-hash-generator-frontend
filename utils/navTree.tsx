@@ -33,6 +33,11 @@ export const navTree: NavMainItemProps[] = [
         path: '/generators/lorem-ipsum',
         disabled: true
     },
+    {
+        label: 'Nanoid Generator',
+        path: '/generators/nanoid',
+        disabled: false
+    },
     ]
 },
 {

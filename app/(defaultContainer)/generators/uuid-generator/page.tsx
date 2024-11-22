@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import UuidGenerator from '@/components/uuidGenerator';
+import UuidGenerator from '@/components/UUIDGenerator';
 
 
 const UuidGeneratorPage = () => {

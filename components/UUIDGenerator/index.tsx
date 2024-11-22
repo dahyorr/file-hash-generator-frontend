@@ -52,7 +52,7 @@ const UuidGenerator = () => {
             <MenuItem value="v4">Version 4</MenuItem>
           </Select>
         </Box>
-        <Button variant="contained" color="primary" onClick={getNewUuid}>Generate</Button>
+
         <OutlinedInput
           id="uuid"
           type={'text'}
@@ -70,8 +70,11 @@ const UuidGenerator = () => {
               </IconButton>
             </InputAdornment>
           }
-          label="Password"
+          label="key"
         />
+
+        <Button variant="contained" color="primary" onClick={getNewUuid}>Generate</Button>
+
       </Stack>
     </Box>
   )
