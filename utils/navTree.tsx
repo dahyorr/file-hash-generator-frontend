@@ -73,5 +73,19 @@ export const navTree: NavMainItemProps[] = [
     },
     ]
 },
+{
+    label: 'Miscellaneous',
+    dropdown: true,
+    icon: <SvgIcon><RiFolderKeyholeFill/></SvgIcon>,
+    path: '/misc',
+    disabled: false,
+    links: [
+    {
+        label: 'File Size Conversion',
+        path: '/misc/size-conversion',
+        disabled: false
+    },
+    ]
+},
 ]
 
