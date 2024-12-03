@@ -74,6 +74,20 @@ export const navTree: NavMainItemProps[] = [
     ]
 },
 {
+    label: 'Parsers',
+    dropdown: true,
+    icon: <SvgIcon><RiFolderKeyholeFill/></SvgIcon>,
+    path: '/parsers',
+    disabled: false,
+    links: [
+    {
+        label: 'URL Parser',
+        path: '/parsers/url-parser',
+        disabled: false
+    },
+    ]
+},
+{
     label: 'Miscellaneous',
     dropdown: true,
     icon: <SvgIcon><RiFolderKeyholeFill/></SvgIcon>,
