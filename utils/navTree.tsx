@@ -4,6 +4,8 @@ import {SiConvertio} from 'react-icons/si';
 import {GiPowerGenerator} from 'react-icons/gi';
 import {RiFolderKeyholeFill} from 'react-icons/ri';
 import { SvgIcon } from '@mui/material';
+import { MdMiscellaneousServices } from "react-icons/md";
+import { TbTextScan2 } from "react-icons/tb";
 
 export const navTree: NavMainItemProps[] = [
 {
@@ -37,6 +39,11 @@ export const navTree: NavMainItemProps[] = [
         label: 'Nanoid Generator',
         path: '/generators/nanoid',
         disabled: false
+    },
+    {
+        label: 'QR Code Generator',
+        path: '/generators/qr-code',
+        disabled: true
     },
     ]
 },
@@ -76,7 +83,7 @@ export const navTree: NavMainItemProps[] = [
 {
     label: 'Parsers',
     dropdown: true,
-    icon: <SvgIcon><RiFolderKeyholeFill/></SvgIcon>,
+    icon: <SvgIcon><TbTextScan2/></SvgIcon>,
     path: '/parsers',
     disabled: false,
     links: [
@@ -90,7 +97,7 @@ export const navTree: NavMainItemProps[] = [
 {
     label: 'Miscellaneous',
     dropdown: true,
-    icon: <SvgIcon><RiFolderKeyholeFill/></SvgIcon>,
+    icon: <SvgIcon><MdMiscellaneousServices/></SvgIcon>,
     path: '/misc',
     disabled: false,
     links: [
