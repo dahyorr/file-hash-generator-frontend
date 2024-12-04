@@ -43,7 +43,7 @@ export const navTree: NavMainItemProps[] = [
     {
         label: 'QR Code Generator',
         path: '/generators/qr-code',
-        disabled: true
+        disabled: false
     },
     ]
 },
