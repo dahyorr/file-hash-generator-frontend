@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import PageHeader from '../PageHeader'
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
-import ReactJsonView from '@microlink/react-json-view'
+import dynamic from 'next/dynamic'
 
 type Props = {}
 
@@ -25,6 +25,9 @@ const defaultValue: ParsedURL = {
   queryObject: {},
   path: ''
 }
+
+const ReactJsonView = dynamic(() => import('@microlink/react-json-view'), { ssr: false })
+
 const UrlParser = ({ }: Props) => {
   const [urlValid, setUrlValid] = useState<boolean>(false)
   const [url, setUrl] = useState<string>("https://devutils.dayo.dev/parsers/url-parser?query=hello-world")
@@ -153,10 +156,9 @@ const UrlParser = ({ }: Props) => {
           py: '0.5rem',
         }}>
           <ReactJsonView
-          name={false}
+            name={false}
             theme={themeMode === 'light' ? "rjv-default" : "ocean"} src={parsedURL.queryObject}
             collapsed={false}
-            
           />
         </Box>
       </Box>
