@@ -70,6 +70,7 @@ const UrlParser = ({ }: Props) => {
         queryObject
       })
     }
+
     else {
       setUrlValid(false)
       setParsedURL(defaultValue)

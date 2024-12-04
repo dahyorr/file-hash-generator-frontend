@@ -5,11 +5,9 @@ import PageHeader from '../PageHeader'
 import { QRCodeCanvas } from 'qrcode.react';
 import { useSnackbar } from 'notistack';
 
-type Props = {}
-
 const defaultValue = "https://devutils.dayo.dev/generators/qr-code"
 
-const QrCodeGenerator = ({}: Props) => {
+const QrCodeGenerator = () => {
   const [value, setValue] = useState<string>(defaultValue)
   const theme = useTheme()
   const themeMode = theme.palette.mode
