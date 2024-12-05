@@ -78,6 +78,16 @@ export const navTree: NavMainItemProps[] = [
         path: '/encode-decode/base64',
         disabled: false
     },
+    {
+        label: 'Base64 Image Encoder/Decoder',
+        path: '/encode-decode/base64',
+        disabled: true
+    },
+    {
+        label: 'JWT Encoder/Decoder',
+        path: '/encode-decode/jwt',
+        disabled: false
+    },
     ]
 },
 {

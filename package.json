@@ -21,6 +21,7 @@
     "axios": "^1.4.0",
     "eslint": "9.14.0",
     "eslint-config-next": "15.0.3",
+    "jose": "^5.9.6",
     "js-yaml": "^4.1.0",
     "localforage": "^1.10.0",
     "monaco-editor": "^0.52.0",
