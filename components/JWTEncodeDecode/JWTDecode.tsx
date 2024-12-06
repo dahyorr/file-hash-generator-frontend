@@ -50,7 +50,7 @@ const JWTDecode = ({ allowedAlg }: Props) => {
         }
       }
     })()
-  }, [token, signature, settings.verifySignature])
+  }, [token, signature, allowedAlg, settings.verifySignature])
 
   return (
     <>
@@ -91,7 +91,7 @@ const JWTDecode = ({ allowedAlg }: Props) => {
       <JWTSettings
         settings={settings}
         mode='decode'
-        onUpdate={(settings) => setSettings(settings)}
+        onUpdate={(settings) => setSettings(settings as JWTDecodeSettings)}
       />
 
 

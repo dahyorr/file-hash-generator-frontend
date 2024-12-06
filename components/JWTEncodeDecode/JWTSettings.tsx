@@ -12,20 +12,19 @@ export type JWTEncodeSettings = {
   payload: string
 }
 type BaseProps = {
+  onUpdate: (settings: JWTEncodeSettings | JWTDecodeSettings) => void
+
   // onUpdate: (settings: JWTDecodeSettings | JWTEncodeSettings) => void
 }
 
 interface DecodeProps extends BaseProps {
   mode: 'decode'
   settings: JWTDecodeSettings
-  onUpdate: (settings: JWTDecodeSettings) => void
-
 }
 
 interface EncodeProps extends BaseProps {
   mode: 'encode'
   settings: JWTEncodeSettings
-  onUpdate: (settings: JWTEncodeSettings) => void
 
 }
 
@@ -34,7 +33,7 @@ type Props = DecodeProps | EncodeProps
 
 const JWTSettings = ({ settings, mode, onUpdate }: Props) => {
 
-  const onSettingUpdate = (key: keyof JWTDecodeSettings | keyof JWTEncodeSettings, value: any) => {
+  const onSettingUpdate = (key: any, value: any) => {
     onUpdate({ ...settings, [key]: value })
   }
 
