@@ -7,7 +7,9 @@ export type JWTDecodeSettings = {
 }
 
 export type JWTEncodeSettings = {
-  // verifySignature: boolean
+  algorithm: string
+  signingKey: string
+  payload: string
 }
 type BaseProps = {
   // onUpdate: (settings: JWTDecodeSettings | JWTEncodeSettings) => void

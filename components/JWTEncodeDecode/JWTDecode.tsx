@@ -3,11 +3,14 @@ import React, { useEffect, useState } from 'react'
 import { decodeJwt, decodeProtectedHeader, jwtVerify } from 'jose'
 import JWTSettings, { JWTDecodeSettings } from './JWTSettings'
 import { JOSEError, JWSSignatureVerificationFailed } from 'jose/dist/types/util/errors'
+import { enqueueSnackbar } from 'notistack'
 
-type Props = {}
+type Props = {
+  allowedAlg: string[]
+}
 
 
-const JWTDecode = (props: Props) => {
+const JWTDecode = ({ allowedAlg }: Props) => {
   const [token, setToken] = useState<string>("")
   const [header, setHeader] = useState<string>("")
   const [payload, setPayload] = useState<string>("")
@@ -25,15 +28,19 @@ const JWTDecode = (props: Props) => {
         setHeader(JSON.stringify(header, null, 2))
         setPayload(JSON.stringify(payload, null, 2))
 
-        if (settings.verifySignature && signature) {
+        if (!settings.verifySignature || !signature) {
+          setSignatureValid(undefined)
+          return
+        }
+        if (allowedAlg.includes(header.alg || "")) {
           await jwtVerify(token, new TextEncoder().encode(signature,))
           setSignatureValid(true)
         }
-
-        if (!signature) {
+        else {
           setSignatureValid(undefined)
+          enqueueSnackbar('Algorithm Unsupported', { variant: 'error' })
+          return
         }
-
       } catch (error: any) {
         if (error?.code === "ERR_JWS_SIGNATURE_VERIFICATION_FAILED") {
           setSignatureValid(false)
