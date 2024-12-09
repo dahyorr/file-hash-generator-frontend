@@ -5,18 +5,22 @@ import PageHeader from '../PageHeader'
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useSnackbar } from 'notistack';
-import Color from 'color';
-import { set } from 'yaml/dist/schema/yaml-1.1/set';
+import chroma from 'chroma-js';
 
 type Props = {}
 
-const colorFormats = [
-  'hex',
-  "rgba",
-  "hsl",
-]
-// const colorTitleProps: TypographyProps = {}
-// const colorValueProps: TypographyProps = {}
+// const colorFormats = [
+//   'hex',
+//   "rgba",
+//   "hsl",
+// ]
+const colorTitleProps: TypographyProps = {
+  variant: "h6",
+  fontSize: "0.75rem"
+}
+const colorValueProps: TypographyProps = {
+  fontSize: "0.85rem"
+}
 
 const ColorConverter = (props: Props) => {
 
@@ -30,11 +34,11 @@ const ColorConverter = (props: Props) => {
 
   const generateColorValues = () => {
     try {
-      const color = Color(inputColor)
+      const color = chroma(inputColor)
       const obj = {
-        hsl: color.hsl().round().string(),
-        hex: color.hexa(),
-        rgba: color.rgb().round().string(),
+        hsl: color.css('hsl'),
+        hex: color.hex(),
+        rgba: color.css(),
       }
       setColorObj(obj)
     }
@@ -79,7 +83,7 @@ const ColorConverter = (props: Props) => {
           maxWidth: "28rem",
           width: "100%",
           borderRadius: "0.5rem",
-          backgroundColor:'transparent'
+          backgroundColor: 'transparent'
         }} >
           <Stack direction={'row'} height={'9rem'} maxHeight={'9rem'} width={"100%"} overflow={'hidden'}>
             <Box
@@ -99,7 +103,7 @@ const ColorConverter = (props: Props) => {
                   bgcolor: 'white',
                   zIndex: -1,
                   inset: 0,
-                  backgroundPosition:"0px 0px, 0px 10px, 10px -10px, -10px 0px",
+                  backgroundPosition: "0px 0px, 0px 10px, 10px -10px, -10px 0px",
                   backgroundSize: "20px 20px",
                   backgroundImage: "linear-gradient(45deg, rgb(238, 238, 238) 25%, transparent 25%), linear-gradient(-45deg, rgb(238, 238, 238) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgb(238, 238, 238) 75%), linear-gradient(-45deg, transparent 75%, rgb(238, 238, 238) 75%) !important"
                 }
@@ -107,18 +111,18 @@ const ColorConverter = (props: Props) => {
 
             <Stack px={'0.5rem'} py="0.25rem" spacing={0} overflow={'auto'}>
               <Box>
-                <Typography variant="h6" fontSize={"0.75rem"}>HEX</Typography>
+                <Typography {...colorTitleProps}>HEX</Typography>
                 <Stack direction={'row'} alignItems={'center'} spacing="1rem">
-                  <Typography> {colorObj?.hex}</Typography>
+                  <Typography {...colorValueProps}> {colorObj?.hex}</Typography>
                   <IconButton size="small" onClick={() => onCopyColor(colorObj?.hex)}>
                     <ContentCopyIcon fontSize='inherit' />
                   </IconButton>
                 </Stack>
               </Box>
               <Box>
-                <Typography variant="h6" fontSize={"0.75rem"}>HSL</Typography>
+                <Typography {...colorTitleProps}>HSL</Typography>
                 <Stack direction={'row'} alignItems={'center'} spacing="1rem">
-                  <Typography> {colorObj?.hsl}</Typography>
+                  <Typography {...colorValueProps}> {colorObj?.hsl}</Typography>
                   <IconButton size="small" onClick={() => onCopyColor(colorObj?.hsl)}>
                     <ContentCopyIcon fontSize='inherit' />
                   </IconButton>
@@ -126,9 +130,9 @@ const ColorConverter = (props: Props) => {
               </Box>
 
               <Box>
-                <Typography variant="h6" fontSize={"0.75rem"}>RGBA</Typography>
+                <Typography {...colorTitleProps}>RGBA</Typography>
                 <Stack direction={'row'} alignItems={'center'} spacing="1rem">
-                  <Typography>{colorObj?.rgba}</Typography>
+                  <Typography {...colorValueProps}>{colorObj?.rgba}</Typography>
                   <IconButton size="small" onClick={() => onCopyColor(colorObj?.rgba)}>
                     <ContentCopyIcon fontSize='inherit' />
                   </IconButton>
