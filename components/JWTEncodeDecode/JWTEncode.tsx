@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { JWTEncodeSettings } from './JWTSettings';
 import { SignJWT } from 'jose';
-import { set } from 'lodash';
 import { useSnackbar } from 'notistack';
 
 type Props = {
