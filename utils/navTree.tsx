@@ -62,7 +62,7 @@ export const navTree: NavMainItemProps[] = [
     {
         label: 'Number Base',
         path: '/converters/number-base',
-        disabled: true
+        disabled: false
     },
     {
         label: 'Color Converter',
