@@ -31,6 +31,11 @@ export const navTree: NavMainItemProps[] = [
         disabled: false
     },
     {
+        label: 'Password Generator',
+        path: '/generators/password-generator',
+        disabled: false
+    },
+    {
         label: 'Lorem Ipsum',
         path: '/generators/lorem-ipsum',
         disabled: true

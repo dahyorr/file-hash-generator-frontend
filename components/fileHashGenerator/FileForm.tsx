@@ -91,7 +91,7 @@ const FileForm = () => {
                     hashTypes: selectedHashType
                 }
                 await initiateHashing(hashRequest)
-                await router.push(`/generators/file-hash-generator/${data.fileId}`);
+                await router.push(`/generators/file-hash-generator/result?fileId=${data.fileId}`);
                 hideLoader()
             }
             catch (err) {
