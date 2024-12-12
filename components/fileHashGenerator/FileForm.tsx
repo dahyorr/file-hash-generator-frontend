@@ -29,7 +29,7 @@ const FileForm = () => {
         message: "",
         open: false
     })
-
+    console.log(files)
     const {showLoader, hideLoader} = useLoader()
 
     const showErrorSnackbar = (message: string) => {
