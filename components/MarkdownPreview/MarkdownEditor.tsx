@@ -10,7 +10,7 @@ interface EditorProps {
   onValidate?: OnValidate;
 }
 
-const Editor: React.FC<EditorProps> = ({value, onMount, theme, onValidate, onChange}) => {
+const MarkdownEditor: React.FC<EditorProps> = ({value, onMount, theme, onValidate, onChange}) => {
   return (
     <Box
       sx={{
@@ -21,7 +21,7 @@ const Editor: React.FC<EditorProps> = ({value, onMount, theme, onValidate, onCha
       }}
     >
       <MonacoEditor
-        defaultLanguage='json'
+        defaultLanguage='markdown'
         defaultValue={value}
         onMount={onMount}
         theme={theme}
@@ -36,4 +36,4 @@ const Editor: React.FC<EditorProps> = ({value, onMount, theme, onValidate, onCha
   )
 }
 
-export default Editor
+export default MarkdownEditor

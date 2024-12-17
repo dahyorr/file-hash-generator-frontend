@@ -73,6 +73,11 @@ export const navTree: NavMainItemProps[] = [
         label: 'Color Converter',
         path: '/converters/color-converter',
         disabled: false
+    },
+    {
+        label: 'Text Escape/Unescape',
+        path: '/converters/text-escape-unescape',
+        disabled: false
     }
     ]
 },
@@ -110,6 +115,11 @@ export const navTree: NavMainItemProps[] = [
     {
         label: 'URL Parser',
         path: '/parsers/url-parser',
+        disabled: false
+    },
+    {
+        label: 'Markdown Preview',
+        path: '/parsers/markdown-preview',
         disabled: false
     },
     ]

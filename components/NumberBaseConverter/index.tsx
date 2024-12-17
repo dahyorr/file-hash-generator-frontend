@@ -4,7 +4,7 @@ import PageHeader from '../PageHeader'
 import { IconButton, InputAdornment, Stack, TextField, Typography } from '@mui/material'
 import { useSnackbar } from 'notistack'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { invoke } from '@tauri-apps/api/core';
+// import { invoke } from '@tauri-apps/api/core';
 
 type Props = {}
 

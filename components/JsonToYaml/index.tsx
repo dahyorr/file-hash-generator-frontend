@@ -1,7 +1,7 @@
 "use client"
 import { useState, useRef, useEffect } from 'react'
-import Editor from "@/components/JsonToYaml/Editor";
-import Preview from "@/components/JsonToYaml/Preview";
+import JsonEditor from "@/components/JsonToYaml/JsonEditor";
+import YamlPreview from "@/components/JsonToYaml/YamlPreview";
 import { Box } from '@mui/material';
 import { OnChange, OnMount, OnValidate, loader } from '@monaco-editor/react'
 import yaml from 'js-yaml'
@@ -62,14 +62,14 @@ const JsonToYaml = () => {
           height: '100%',
           display: 'flex',
         }}>
-        <Editor
+        <JsonEditor
           value={editorContent}
           onMount={handleEditorDidMount}
           theme={themeMode === 'light' ? themeMode : 'vs-dark'}
           onChange={handleEditorChange}
           onValidate={handleEditorValidation}
         />
-        <Preview
+        <YamlPreview
           onMount={handlePreviewDidMount}
           theme={themeMode === 'light' ? themeMode : 'vs-dark'}
         />
