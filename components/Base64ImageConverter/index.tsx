@@ -3,6 +3,7 @@ import { Typography, Tabs, Tab, Box } from "@mui/material";
 import PageHeader from "../PageHeader";
 import { useState } from "react";
 import Base64ImageDecoder from "./Base64ImageDecoder";
+import Base64ImageEncoder from "./Base64ImageEncoder";
 
 const Base64ImageConverter = () => {
 
@@ -25,7 +26,7 @@ const Base64ImageConverter = () => {
         </Box>
       </PageHeader>
 
-      {mode === "decode" ? (<Base64ImageDecoder />) : (<></>)}
+      {mode === "decode" ? (<Base64ImageDecoder />) : (<Base64ImageEncoder/>)}
 
 
     </>
