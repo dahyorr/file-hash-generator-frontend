@@ -1,9 +1,9 @@
 import PageHeader from 'components/PageHeader'
-import HashPreview from 'components/fileHashGenerator/HashPreview'
+import HashPreview from '@/components/FileHashGenerator/HashPreview'
 import { Box, Typography } from '@mui/material'
-import {PropsWithChildren} from 'react'
+import { PropsWithChildren } from 'react'
 
-const FileHashGeneratorLayout = ({children}: PropsWithChildren) => {
+const FileHashGeneratorLayout = ({ children }: PropsWithChildren) => {
   return (
     <Box>
       <PageHeader>

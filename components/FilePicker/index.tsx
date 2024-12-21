@@ -5,7 +5,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import ErrorIcon from '@mui/icons-material/Error';
 import UploadFileTwoToneIcon from '@mui/icons-material/UploadFileTwoTone';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
-import {useDropzone} from 'react-dropzone'
+import {Accept, useDropzone} from 'react-dropzone'
 import { convertByteSize } from '@/utils';
 import IconButton from '@mui/material/IconButton'
 
@@ -26,13 +26,15 @@ const UploadDropzone = styled('div')(({theme}) => ({
     position: 'relative'
 }))
 
-const FileUpload: React.FC<{
+const FilePicker: React.FC<{
     onChange: (files: File[]) => void;
     clearFiles: () => void;
     selectedFiles: File[];
     sizeLimit: number;
-    disableDropzone: boolean
-}> = ({onChange, selectedFiles, clearFiles, sizeLimit, disableDropzone}) => {
+    disableDropzone?: boolean
+    placeholder?: string
+    accept?: Accept
+}> = ({onChange, selectedFiles,placeholder, accept,clearFiles, sizeLimit, disableDropzone}) => {
     
 
     const onDropAccepted = useCallback((acceptedFiles: File[]) => {
@@ -44,6 +46,7 @@ const FileUpload: React.FC<{
         maxFiles: 1,
         maxSize: sizeLimit,
         multiple: false,
+        accept
     })
 
     const fileErrors = fileRejections.length > 0 && fileRejections[0].errors || []
@@ -96,7 +99,7 @@ const FileUpload: React.FC<{
             {
                 isDragActive
                 ? "Drop the files here ..."
-                : "Drop a file to upload or click here"
+                : placeholder || "Drop a file to upload or click here"
             }
             </Typography>
         </>
@@ -132,4 +135,4 @@ const FileUpload: React.FC<{
   </Paper>
   )
 }
-export default FileUpload
+export default FilePicker

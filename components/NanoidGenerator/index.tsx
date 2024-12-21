@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react'
 import PageHeader from 'components/PageHeader'
-import { Box, Button, OutlinedInput, MenuItem, Stack, InputAdornment, IconButton, Typography, Select, SelectChangeEvent, Slider, Input } from '@mui/material'
+import { Box, Button, OutlinedInput, Stack, InputAdornment, IconButton, Typography, Select, SelectChangeEvent, Slider, Input } from '@mui/material'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { generateNanoid } from '@/utils/generateNanoid';
 import { copyToClipboard } from '@/utils';

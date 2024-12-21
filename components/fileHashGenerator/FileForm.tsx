@@ -9,7 +9,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import FileUpload from "./FileUpload";
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import Snackbar from '@mui/material/Snackbar';
@@ -17,6 +16,7 @@ import Alert from '@mui/material/Alert';
 import { uploadFile, initiateHashing } from "@/api";
 import { useLoader } from "@/hooks";
 import { HashType, HashRequest } from '@/types';
+import FilePicker from "../FilePicker";
 
 const hashTypes: HashType[] = ['md5', 'sha224', 'sha256', 'sha512'];
 
@@ -114,7 +114,7 @@ const FileForm = () => {
                 justifyContent: 'space-evenly'
             }}>
 
-            <FileUpload
+            <FilePicker
                 onChange={handleFileSelect}
                 selectedFiles={files}
                 clearFiles={clearFiles}

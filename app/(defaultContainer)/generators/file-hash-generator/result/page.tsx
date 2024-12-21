@@ -1,7 +1,7 @@
-import HashPreview from 'components/fileHashGenerator/HashPreview'
+import HashPreview from '@/components/FileHashGenerator/HashPreview'
 import { Suspense } from 'react'
 
-const FileHashGeneratorResultPage = async ({}) => {
+const FileHashGeneratorResultPage = async ({ }) => {
 
   return (
     <Suspense>
